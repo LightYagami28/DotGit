@@ -1,8 +1,8 @@
 function set_gui(options) {
     let colors = document.getElementById("color");
-    for (let i = 0; i < colors.length; i++) {
+    for (let i = 0; i < colors.options.length; i++) {
         if (colors.options[i].value === options.color) {
-            document.getElementById("color").selectedIndex = i;
+            colors.selectedIndex = i;
         }
     }
     document.getElementById("gitOn").checked = options.functions.git;
@@ -36,93 +36,38 @@ document.addEventListener("DOMContentLoaded", function () {
         document.addEventListener("change", (e) => {
             if (e.target.name === "git") {
                 result.options.functions.git = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.functions.git
-                }, function (response) {
-                });
             } else if (e.target.name === "svn") {
                 result.options.functions.svn = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.functions.svn
-                }, function (response) {
-                });
             } else if (e.target.name === "hg") {
                 result.options.functions.hg = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.functions.hg
-                }, function (response) {
-                });
             } else if (e.target.name === "env") {
                 result.options.functions.env = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.functions.env
-                }, function (response) {
-                });
             } else if (e.target.id === "color") {
                 result.options.color = e.target.value;
-                chrome.storage.local.set(result);
             } else if (e.target.validity.valid === true && (e.target.id === "max_sites")) {
                 result.options.max_sites = e.target.value;
-                chrome.storage.local.set(result);
             } else if (e.target.name === "notification_new_git") {
                 result.options.notification.new_git = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.notification.new_git
-                }, function (response) {
-                });
             } else if (e.target.name === "notification_download") {
                 result.options.notification.download = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.notification.download
-                }, function (response) {
-                });
             } else if (e.target.name === "check_opensource") {
                 result.options.check_opensource = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.check_opensource
-                }, function (response) {
-                });
             } else if (e.target.name === "check_securitytxt") {
                 result.options.check_securitytxt = (e.target.value === "on");
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.name,
-                    value: result.options.check_securitytxt
-                }, function (response) {
-                });
             } else if (e.target.validity.valid === true && (e.target.id === "max_connections" || e.target.id === "wait" || e.target.id === "max_wait" || e.target.id === "failed_in_a_row")) {
                 result.options.download[e.target.id] = e.target.value;
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.id,
-                    value: e.target.value
-                }, function (response) {
-                });
             } else if (e.target.id === "blacklist") {
                 result.options.blacklist = e.target.value.replace(/\s/g, "").split(",").filter(function (el) {
                     return el !== "";
                 });
-                chrome.storage.local.set(result);
-                chrome.runtime.sendMessage({
-                    type: e.target.id,
-                    value: result.options.blacklist
-                }, function (response) {
-                });
             }
+
+            chrome.storage.local.set(result);
+            chrome.runtime.sendMessage({
+                type: e.target.name || e.target.id,
+                value: e.target.value
+            }, function (response) {
+            });
         });
 
         document.addEventListener("click", (e) => {

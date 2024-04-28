@@ -1,28 +1,25 @@
-import "/lib/jszip.min.js";
-import "/lib/pako_inflate.min.js";
-
 const DEFAULT_OPTIONS = {
-    "functions": {
-        "git": true,
-        "svn": false,
-        "hg": false,
-        "env": false
+    functions: {
+        git: true,
+        svn: false,
+        hg: false,
+        env: false
     },
-    "color": "grey",
-    "max_sites": 100,
-    "notification": {
-        "new_git": true,
-        "download": true
+    color: "grey",
+    max_sites: 100,
+    notification: {
+        new_git: true,
+        download: true
     },
-    "check_opensource": true,
-    "check_securitytxt": true,
-    "download": {
-        "wait": 100,
-        "max_wait": 10000,
-        "max_connections": 20,
-        "failed_in_a_row": 250
+    check_opensource: true,
+    check_securitytxt: true,
+    download: {
+        wait: 100,
+        max_wait: 10000,
+        max_connections: 20,
+        failed_in_a_row: 250
     },
-    "blacklist": [
+    blacklist: [
         'localhost'
     ]
 };
@@ -467,6 +464,9 @@ function startDownload(baseUrl, downloadFinished) {
                 search.lastIndex++;
             }
 
+                search.lastIndex++;
+            }
+
             for (let i = 0; i < matches.length; i++) {
                 let pathExt = GIT_PACK_PATH + matches[i] + GIT_PACK_EXT;
                 let pathIdx = GIT_PACK_PATH + matches[i] + GIT_IDX_EXT;
@@ -486,27 +486,27 @@ function startDownload(baseUrl, downloadFinished) {
     }
 
     // start download from well know paths
-    for (let i = 0; i < GIT_WELL_KNOW_PATHS.length; i++) {
-        downloadFile(GIT_WELL_KNOW_PATHS[i], false, checkResult);
-    }
-}
+            for (let i = 0; i < GIT_WELL_KNOW_PATHS.length; i++) {
+                downloadFile(GIT_WELL_KNOW_PATHS[i], false, checkResult);
+            }
+        
 
 
-function set_options(options) {
-    wait = options.download.wait;
-    max_wait = options.download.max_wait;
-    max_connections = options.download.max_connections;
-    failed_in_a_row = options.download.failed_in_a_row;
-    notification_new_git = options.notification.new_git;
-    notification_download = options.notification.download;
-    check_opensource = options.check_opensource;
-    check_securitytxt = options.check_securitytxt;
-    check_git = options.functions.git;
-    check_svn = options.functions.svn;
-    check_hg = options.functions.hg;
-    check_env = options.functions.env;
-    blacklist = options.blacklist;
-}
+        function set_options(options) {
+            wait = options.download.wait;
+            max_wait = options.download.max_wait;
+            max_connections = options.download.max_connections;
+            failed_in_a_row = options.download.failed_in_a_row;
+            notification_new_git = options.notification.new_git;
+            notification_download = options.notification.download;
+            check_opensource = options.check_opensource;
+            check_securitytxt = options.check_securitytxt;
+            check_git = options.functions.git;
+            check_svn = options.functions.svn;
+            check_hg = options.functions.hg;
+            check_env = options.functions.env;
+            blacklist = options.blacklist;
+        }
 
 
 function checkOptions(default_options, storage_options) {

@@ -10,15 +10,16 @@ An extension for checking if .git is exposed in visited websites
 
 - Check if a .git/.svn/.hg folder exists for each site you visit
 - Check if a .env file exists for each site you visit
-- Check if the site is open source (github/gitlab)
+- Check if the site is open source (GitHub/GitLab)
 - Check if the site has security.txt
 - You will be notified when a folder is found
 - List of exposed sites found
 - Download the entire .git folder in zip format, even if the files are not listed on the site
 - View .git/config with one click
-- Options for: colors, notifications and downloads
+- Options for: colors, notifications, and downloads
 
 _Some checks are turned off by default, open the settings to turn them on_
+
 ## How the download works
 
 There is a queue for downloads, with a **maximum of simultaneous connections**; if this number is exceeded, subsequent
@@ -29,14 +30,13 @@ More info [here](https://github.com/davtur19/DotGit/blob/b0f589dfd78396990b8d17e
 
 ### Note:
 
-- Downloading is an extra feature to DotGit, it is not meant to download large repositories (there are limits to the
+- Downloading is an extra feature of DotGit, it is not meant to download large repositories (there are limits to the
   memory usable by extensions, and DotGit does everything in RAM)
 - Changing the download settings is recommended as by default the values are kept low to avoid problems for those who do
   not have a good connection or a good CPU, however too high values could freeze the browser even on powerful computers
-- By default, svn, mercurial and dotenv are disabled, to activate them just go to settings and turn them on
+- By default, SVN, Mercurial, and dotenv are disabled, to activate them just go to settings and turn them on
 
 ## Screenshot
 
-![ScreenShot](https://user-images.githubusercontent.com/13476215/213874632-6f05c28e-1e90-487e-a0d9-f619b9b69e1a.png)
 
 ## Download: [Firefox](https://addons.mozilla.org/it/firefox/addon/dotgit/) | [Chrome](https://chrome.google.com/webstore/detail/dotgit/pampamgoihgcedonnphgehgondkhikel)

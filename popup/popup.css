@@ -22,7 +22,7 @@ ul.collection {
 }
 
 .btn-small {
-    padding: 0 0;
+    padding: 0;
     height: auto;
     transform: translateY(-2px);
     margin-left: 4px;
